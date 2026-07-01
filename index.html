@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exclusivo Turismo — Información, Análisis y Tendencias del Turismo</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Barlow:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root { --gold:#C9A84C; --gold2:#B8963E; --gold3:#E2C97E; }
+[data-theme="light"] {
+  --bg:#f2f0eb; --bg-white:#fff; --bg-light:#f8f7f4;
+  --bg-topbar:#fff; --bg-header:#fff; --bg-nav:#fff;
+  --bg-ticker:#f2f0eb; --bg-sidebar:#fff;
+  --border:#e0ddd8; --border2:#ccc;
+  --text:#1a1a1a; --text2:#444; --text3:#888;
+  --footer-bg:#1a1a1a; --footer-txt:#666;
+}
+[data-theme="dark"] {
+  --bg:#0d0d0d; --bg-white:#111; --bg-light:#181818;
+  --bg-topbar:#000; --bg-header:#000; --bg-nav:#0d0d0d;
+  --bg-ticker:#181818; --bg-sidebar:#111;
+  --border:#272727; --border2:#333;
+  --text:#e8e6e0; --text2:#aaa; --text3:#555;
+  --footer-bg:#000; --footer-txt:#555;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);transition:background .25s,color .25s}
+a{text-decoration:none;color:inherit}
+img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* TOP BAR */
+.topbar{background:var(--bg-topbar);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:6px 20px;font-size:11.5px}
+.topbar-left{display:flex;align-items:center;gap:8px}
+.topbar-left .lbl{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)}
+.aa{font-size:14px;font-weight:700;font-style:italic;color:#1a7cc9}
+.topbar-center{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);font-weight:500}
+.topbar-right{display:flex;align-items:center;gap:12px}
+.topbar-right a{color:var(--text3);transition:color .2s;display:flex;align-items:center}
+.topbar-right a:hover{color:var(--gold)}
+.theme-btn{background:none;border:1px solid var(--border2);border-radius:3px;padding:2px 9px;font-size:10px;font-weight:600;letter-spacing:.08em;color:var(--text3);cursor:pointer;font-family:'Barlow',sans-serif;transition:all .2s}
+.theme-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+/* HEADER */
+.header{background:var(--bg-header);border-bottom:1px solid var(--border);padding:16px 24px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.header-left{display:flex;align-items:center;gap:9px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.ham{display:flex;flex-direction:column;gap:4px}
+.ham span{display:block;width:19px;height:2px;background:var(--text);border-radius:1px}
+.logo{text-align:center}
+.logo-orn{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:2px}
+.logo-orn::before,.logo-orn::after{content:'';flex:1;max-width:60px;height:1px;background:linear-gradient(to right,transparent,var(--gold))}
+.logo-orn::after{background:linear-gradient(to left,transparent,var(--gold))}
+.logo-orn-c{font-size:8px;color:var(--gold2);letter-spacing:2px}
+.logo-name{font-family:'Playfair Display',serif;font-size:44px;font-weight:900;color:var(--gold);letter-spacing:.06em;line-height:1;display:block}
+.logo-tag{font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--text3);margin-top:5px;font-weight:400}
+.header-right{display:flex;justify-content:flex-end;align-items:center;gap:9px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+
+/* NAV */
+.nav{background:var(--bg-nav);border-bottom:2px solid var(--gold2)}
+.nav-inner{display:flex;align-items:center;padding:0 16px;overflow-x:auto;scrollbar-width:none}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-home{padding:12px 14px;font-size:17px;color:var(--gold);flex-shrink:0}
+.nav-inner a{padding:12px 13px;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--text2);white-space:nowrap;flex-shrink:0;transition:color .2s;border-bottom:2px solid transparent;margin-bottom:-2px}
+.nav-inner a:hover,.nav-inner a.active{color:var(--gold)}
+
+/* HERO */
+.hero{position:relative;width:100%;height:500px;overflow:hidden}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.8s ease;background-size:cover;background-position:center}
+.hero-slide.active{opacity:1}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.2) 0%,rgba(0,0,0,.08) 35%,rgba(0,0,0,.65) 70%,rgba(0,0,0,.88) 100%)}
+.hero-content{position:absolute;left:44px;bottom:56px;max-width:500px;z-index:2}
+.badge{display:inline-block;background:var(--gold);color:#000;font-size:9.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;padding:4px 11px;margin-bottom:14px}
+.hero-title{font-family:'Playfair Display',serif;font-size:35px;font-weight:700;line-height:1.22;color:#fff;margin-bottom:14px;text-shadow:0 2px 24px rgba(0,0,0,.5)}
+.hero-body{font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.82);font-weight:300;margin-bottom:22px}
+.btn-leer{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--gold);color:var(--gold);padding:9px 20px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;transition:all .22s;cursor:pointer}
+.btn-leer:hover{background:var(--gold);color:#000}
+.hero-dots{position:absolute;bottom:16px;right:24px;display:flex;gap:7px;z-index:3}
+.hdot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;border:none;transition:all .3s}
+.hdot.active{background:var(--gold);transform:scale(1.3)}
+
+/* TICKER */
+.ticker{background:var(--bg-ticker);border-bottom:1px solid var(--border);display:flex;align-items:stretch;min-height:44px}
+.ticker-date{padding:0 18px;font-size:10.5px;font-weight:600;letter-spacing:.08em;color:var(--text3);border-right:1px solid var(--border2);display:flex;align-items:center;white-space:nowrap;flex-shrink:0}
+.ticker-items{display:flex;flex:1;overflow:hidden}
+.ticker-item{flex:1;padding:0 22px;font-size:12.5px;color:var(--text2);border-right:1px solid var(--border);display:flex;align-items:center;min-width:0}
+.ticker-item span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ticker-more{padding:0 18px;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;letter-spacing:.09em;color:var(--gold);white-space:nowrap;cursor:pointer;flex-shrink:0}
+
+/* PAGE */
+.page{max-width:1280px;margin:0 auto;padding:0 20px}
+.sec-head{display:flex;align-items:center;justify-content:space-between;margin:28px 0 16px}
+.sec-title{font-size:12.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.sec-more{font-size:11px;font-weight:700;letter-spacing:.09em;color:var(--gold)}
+
+/* MAIN GRID */
+.main-grid{display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:start;padding-bottom:36px}
+
+/* NEWS GRID — exact layout: big left + 3 small right */
+.news-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border);background:var(--bg-white)}
+.news-big{border-right:1px solid var(--border);display:flex;flex-direction:column}
+.news-big-img{width:100%;height:240px;position:relative;overflow:hidden;flex-shrink:0}
+.news-big-img img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.news-big:hover .news-big-img img{transform:scale(1.04)}
+.news-big-tag{position:absolute;bottom:12px;left:14px;background:var(--gold);color:#000;font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px}
+.news-big-body{padding:18px 18px 20px;flex:1;display:flex;flex-direction:column}
+.news-big-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;line-height:1.35;color:var(--text);margin-bottom:10px}
+.news-big-desc{font-size:12.5px;line-height:1.65;color:var(--text2);font-weight:300;flex:1;margin-bottom:14px}
+.card-link{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:5px;cursor:pointer;width:fit-content}
+.small-tag{font-size:9.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+
+/* Small news right col */
+.news-small-col{display:flex;flex-direction:column}
+.news-small-item{display:grid;grid-template-columns:120px 1fr;border-bottom:1px solid var(--border);min-height:130px}
+.news-small-item:last-child{border-bottom:none}
+.news-small-img{width:120px;height:100%;min-height:130px;overflow:hidden;flex-shrink:0}
+.news-small-img img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.news-small-item:hover .news-small-img img{transform:scale(1.06)}
+.news-small-body{padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between}
+.small-title{font-family:'Playfair Display',serif;font-size:13.5px;font-weight:600;line-height:1.4;color:var(--text);flex:1;margin-bottom:8px}
+
+/* SIDEBAR */
+.sidebar{display:flex;flex-direction:column;gap:20px}
+.sbox{background:var(--bg-sidebar);border:1px solid var(--border)}
+.sbox-head{padding:10px 16px;border-bottom:1px solid var(--border);font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--text3)}
+.sbox-body{padding:18px 16px}
+.ypf{font-size:40px;font-weight:900;color:#003f8a;font-family:'Barlow',sans-serif;letter-spacing:-1px;text-align:center;display:block;line-height:1;margin-bottom:6px}
+[data-theme="dark"] .ypf{color:#4a8adf}
+.ypf-tag{text-align:center;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);font-weight:600;line-height:1.6;margin-bottom:16px}
+.btn-outline{display:block;border:1.5px solid var(--border2);color:var(--text);padding:8px 14px;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-align:center;cursor:pointer;transition:all .2s}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.fit-wrap{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.fit-badge{width:52px;height:52px;border-radius:50%;background:#003087;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.fit-big{font-size:16px;font-weight:900;color:#fff;line-height:1;font-family:'Barlow',sans-serif;text-align:center}
+.fit-name{font-size:22px;font-weight:900;color:var(--gold);font-family:'Playfair Display',serif;line-height:1}
+.fit-desc{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;line-height:1.5;font-weight:600}
+.fit-date{font-size:11.5px;font-weight:700;color:var(--text);margin-bottom:3px}
+.fit-place{font-size:11px;color:var(--text2);margin-bottom:14px}
+.btn-gold{display:block;border:1.5px solid var(--gold);color:var(--gold);padding:8px 14px;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-align:center;cursor:pointer;transition:all .2s}
+.btn-gold:hover{background:var(--gold);color:#000}
+.tv-thumb{width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,#111 0%,#2a2a4a 100%);display:flex;align-items:center;justify-content:center;cursor:pointer;margin-bottom:12px;position:relative;overflow:hidden}
+.tv-play{width:46px;height:46px;border-radius:50%;background:rgba(201,168,76,.9);display:flex;align-items:center;justify-content:center;position:relative;z-index:1;transition:transform .2s}
+.tv-thumb:hover .tv-play{transform:scale(1.1)}
+.tv-play::after{content:'';border-left:14px solid #000;border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:3px}
+.tv-label{font-size:9.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.tv-name{font-size:13.5px;font-weight:700;color:var(--text);margin-bottom:2px}
+.tv-role{font-size:11px;color:var(--text3);line-height:1.5;margin-bottom:10px}
+
+/* ARTÍCULO COMPLETO CON FOTOS INTERCALADAS */
+.art-full {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  margin-bottom: 28px;
+  transition: border-color .28s;
+}
+.art-full:hover { border-color: var(--gold2); }
+.art-full-header {
+  padding: 22px 24px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.art-full-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text);
+  margin: 8px 0 10px;
+}
+.art-full-bajada {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text2);
+  font-weight: 400;
+  margin-bottom: 10px;
+  font-style: italic;
+  border-left: 3px solid var(--gold);
+  padding-left: 14px;
+}
+.art-full-img-wrap {
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+  position: relative;
+}
+.art-full-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .4s;
+}
+.art-full:hover .art-full-img-wrap img { transform: scale(1.02); }
+.art-full-text {
+  padding: 18px 24px;
+}
+.art-full-text p {
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--text2);
+  font-weight: 300;
+  margin-bottom: 14px;
+}
+.art-full-text p:last-child { margin-bottom: 0; }
+.art-full-footer {
+  padding: 14px 24px 18px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* SECTION DIVIDER */
+.sec-div{display:flex;align-items:center;gap:12px;padding:28px 0 16px}
+.sec-div::before,.sec-div::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(201,168,76,.4),transparent)}
+.sec-div::after{background:linear-gradient(90deg,transparent,rgba(201,168,76,.4))}
+.sec-div span{font-size:9px;letter-spacing:.45em;color:var(--gold);white-space:nowrap;text-transform:uppercase;font-weight:700}
+
+/* NOTICIAS POR SECCIÓN */
+.section-news{margin-bottom:8px}
+.art-big{background:var(--bg-white);border:1px solid var(--border);margin-bottom:14px;transition:border-color .28s}
+.art-big:hover{border-color:var(--gold2)}
+.art-big-img{position:relative;width:100%;height:210px;overflow:hidden}
+.art-big-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.art-big:hover .art-big-img img{transform:scale(1.04)}
+.art-tag{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.72);border:1px solid rgba(201,168,76,.4);padding:3px 9px;backdrop-filter:blur(6px)}
+.art-tag span{font-size:8px;letter-spacing:.2em;color:var(--gold);font-weight:700;text-transform:uppercase}
+.art-body{padding:16px 18px 18px}
+.art-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;line-height:1.32;color:var(--text);margin-bottom:8px}
+.art-desc{font-size:12.5px;line-height:1.65;color:var(--text2);font-weight:300;margin-bottom:8px}
+.art-meta{font-size:10px;color:var(--text3);letter-spacing:.06em}
+.art-h{background:var(--bg-white);border:1px solid var(--border);margin-bottom:12px;display:grid;grid-template-columns:110px 1fr;transition:border-color .28s}
+.art-h:hover{border-color:var(--gold2)}
+.art-h-img{width:110px;height:100%;min-height:100px;overflow:hidden;flex-shrink:0}
+.art-h-img img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.art-h:hover .art-h-img img{transform:scale(1.06)}
+.art-h-body{padding:12px 14px;display:flex;flex-direction:column;justify-content:space-between}
+.art-cat{font-size:9.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.art-h-title{font-family:'Playfair Display',serif;font-size:13px;font-weight:600;line-height:1.38;color:var(--text);margin-bottom:6px;flex:1}
+
+/* DESTINOS */
+.dest-section{padding-bottom:36px}
+.dest-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.dest-card{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:4/3.2}
+.dest-card .di{width:100%;height:100%;transition:transform .4s ease}
+.dest-card:hover .di{transform:scale(1.07)}
+.dest-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.dest-card:hover img{transform:scale(1.07)}
+.dest-caption{position:absolute;bottom:0;left:0;right:0;padding:28px 14px 14px;background:linear-gradient(to top,rgba(0,0,0,.78) 0%,transparent 100%)}
+.dest-name{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#fff;margin-bottom:2px}
+.dest-sub{font-size:11px;color:rgba(255,255,255,.65)}
+.dest-border{position:absolute;inset:0;border:2.5px solid var(--gold);opacity:0;transition:opacity .3s;pointer-events:none}
+.dest-card:hover .dest-border{opacity:1}
+
+/* ALIADOS */
+.aliados-section{background:var(--bg-white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:24px 20px}
+.aliados-inner{max-width:1280px;margin:0 auto}
+.aliados-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-top:18px}
+.aliado{display:flex;align-items:center;gap:9px;cursor:pointer;opacity:.6;transition:opacity .2s}
+.aliado:hover{opacity:1}
+.al-icon{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;background:var(--bg-light)}
+.al-text{font-size:11px;font-weight:700;color:var(--text2);line-height:1.4}
+.al-text small{display:block;font-weight:400;font-size:9.5px;color:var(--text3)}
+
+/* FOOTER */
+footer{background:var(--footer-bg);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:14px 24px}
+.footer-copy{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--footer-txt)}
+.footer-links{display:flex;gap:28px}
+.footer-links a{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--footer-txt);transition:color .2s}
+.footer-links a:hover{color:var(--gold)}
+
+@media(max-width:960px){.main-grid{grid-template-columns:1fr}.dest-grid{grid-template-columns:repeat(2,1fr)}.ticker-items .ticker-item:nth-child(n+2){display:none}.logo-name{font-size:32px}}
+@media(max-width:600px){.news-grid{grid-template-columns:1fr}.news-big{border-right:none;border-bottom:1px solid var(--border)}.dest-grid{grid-template-columns:repeat(2,1fr)}.topbar-center{display:none}}
+
+
+/* ══ LIVE CAM PLAYER ══ */
+.livecam-wrap {
+  background: #000;
+  border-top: 3px solid #DC2626;
+  border-bottom: 3px solid #DC2626;
+  margin-bottom: 0;
+  position: relative;
+  overflow: hidden;
+}
+.livecam-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 20px;
+  background: #0a0a0a;
+}
+.livecam-badge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .22em;
+  color: #DC2626;
+  text-transform: uppercase;
+}
+.livecam-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #DC2626;
+  box-shadow: 0 0 6px #DC2626;
+  animation: lcblink 1.1s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes lcblink{0%,100%{opacity:1}50%{opacity:.15}}
+.livecam-badge-txt { color: rgba(255,255,255,.7); font-weight:500; letter-spacing:.06em; font-size:11px; }
+.livecam-open-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #DC2626;
+  color: #fff;
+  border: none;
+  padding: 7px 16px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Barlow', sans-serif;
+  transition: background .2s, transform .15s;
+  text-decoration: none;
+}
+.livecam-open-btn:hover { background: #b91c1c; transform: scale(1.03); }
+.livecam-preview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  max-height: 480px;
+  background: #050505;
+  overflow: hidden;
+  cursor: pointer;
+}
+.livecam-preview img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: .55;
+  transition: opacity .3s;
+}
+.livecam-preview:hover img { opacity: .7; }
+.livecam-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: linear-gradient(180deg, rgba(0,0,0,.3) 0%, rgba(0,0,0,.55) 100%);
+}
+.livecam-play {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: rgba(220,38,38,.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  color: #fff;
+  box-shadow: 0 0 32px rgba(220,38,38,.6);
+  transition: transform .22s, background .2s;
+}
+.livecam-preview:hover .livecam-play { transform: scale(1.1); background: #DC2626; }
+.livecam-play-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  color: rgba(255,255,255,.92);
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 0 1px 8px rgba(0,0,0,.8);
+}
+.livecam-play-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,.55);
+  letter-spacing: .08em;
+  margin-top: -8px;
+  text-align: center;
+}
+.livecam-footer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 20px;
+  background: #0a0a0a;
+  border-top: 1px solid rgba(220,38,38,.2);
+}
+.livecam-footer-bar span {
+  font-size: 10px;
+  color: rgba(255,255,255,.35);
+  letter-spacing: .06em;
+}
+.livecam-yt-link {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255,255,255,.5);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  transition: color .2s;
+}
+.livecam-yt-link:hover { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <span class="lbl">Sponsor Principal</span>
+    <span class="aa">✈ Aerolíneas Argentinas</span>
+  </div>
+  <div class="topbar-center">Conectando Argentina con el Mundo</div>
+  <div class="topbar-right">
+    <a href="https://www.instagram.com/exclusivoturismo" target="_blank" title="Instagram">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="https://www.linkedin.com" target="_blank" title="LinkedIn">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="3"/><line x1="8" y1="11" x2="8" y2="17"/><circle cx="8" cy="8" r="1" fill="currentColor" stroke="none"/><path d="M12 17v-4a2 2 0 014 0v4"/><line x1="12" y1="11" x2="12" y2="17"/></svg>
+    </a>
+    <a href="https://www.youtube.com/@exclusivoturismo" target="_blank" title="YouTube">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="3"/><polygon points="10,9 17,12 10,15" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="#" title="X">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.262 5.638 5.902-5.638Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </a>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">☾ OSCURO</button>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-left">
+    <div class="ham"><span></span><span></span><span></span></div>
+    MENÚ
+  </div>
+  <div class="logo">
+    <div class="logo-orn"><span class="logo-orn-c">✦ ✦ ✦</span></div>
+    <span class="logo-name">EXCLUSIVO<br>TURISMO</span>
+    <div class="logo-tag">Información, Análisis y Tendencias del Turismo</div>
+  </div>
+  <div class="header-right">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    BUSCAR
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-home">⌂</a>
+    <a href="#noticias" class="active">Noticias</a>
+    <a href="#argentina">Argentina</a>
+    <a href="#cordoba">Córdoba</a>
+    <a href="#caribe">Caribe</a>
+    <a href="#europa">Europa</a>
+    <a href="#mundo">Mundo</a>
+    <a href="#streaming">TV en Vivo</a>
+    <a href="#destinos">Destinos</a>
+    <a href="#">Gastronomía</a>
+    <a href="#">Contacto</a>
+  </div>
+</nav>
+
+<!-- HERO (slideshow con fotos reales) -->
+<section class="hero">
+  <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=85')"></div>
+  <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1504700610630-ac6aba3536d3?w=1600&q=85')"></div>
+  <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1548574505-5e239809ee19?w=1600&q=85')"></div>
+  <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1600&q=85')"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content" id="hero-content">
+    <span class="badge">Último Momento</span>
+    <h1 class="hero-title" id="hero-title">Córdoba presenta una agenda turística cargada de actividades para julio</h1>
+    <p class="hero-body" id="hero-body">Festivales, deportes, gastronomía y naturaleza esperan a los visitantes en los principales valles de la provincia durante las vacaciones de invierno 2026.</p>
+    <a href="#" class="btn-leer">Leer Más →</a>
+  </div>
+  <div class="hero-dots">
+    <button class="hdot active" onclick="goSlide(0)"></button>
+    <button class="hdot" onclick="goSlide(1)"></button>
+    <button class="hdot" onclick="goSlide(2)"></button>
+    <button class="hdot" onclick="goSlide(3)"></button>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-date">Junio 2026</div>
+  <div class="ticker-items">
+    <div class="ticker-item"><span>🏔 Bariloche: temporada invernal histórica · Cerro Catedral lista para recibir turistas</span></div>
+    <div class="ticker-item"><span>✈ Aerolíneas Argentinas lanza Economy Plus para vuelos internacionales desde noviembre</span></div>
+    <div class="ticker-item"><span>🌊 Misiones y las Cataratas del Iguazú: el invierno ideal para la selva misionera</span></div>
+  </div>
+  <div class="ticker-more">VER MÁS NOTICIAS ›</div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="page" id="noticias">
+
+  <div class="sec-head">
+    <span class="sec-title">Noticias Destacadas</span>
+  </div>
+
+  <div class="main-grid">
+
+    <div>
+      <!-- NEWS GRID: big izquierda + 3 pequeñas derecha -->
+      <div class="news-grid" id="portada">
+        <!-- GRANDE IZQUIERDA -->
+        <div class="news-big">
+          <div class="news-big-img">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Córdoba Turismo Julio">
+            <span class="news-big-tag">Córdoba · Vacaciones de Invierno</span>
+          </div>
+          <div class="news-big-body">
+            <div class="small-tag">Córdoba · Vacaciones de Invierno</div>
+            <h2 class="news-big-title">Córdoba presenta una agenda turística cargada de actividades para julio</h2>
+            <p class="news-big-desc">Con el inicio de las vacaciones de invierno, localidades de todos los valles ofrecerán festivales, deportes, gastronomía y experiencias en la naturaleza para visitantes de todo el país.</p>
+            <span class="art-meta" style="margin-bottom:12px">Junio 2026 · Redacción Exclusivo Turismo</span>
+            <a href="#" class="card-link">LEER MÁS ›</a>
+          </div>
+        </div>
+        <!-- 3 PEQUEÑAS DERECHA -->
+        <div class="news-small-col">
+          <div class="news-small-item">
+            <div class="news-small-img"><img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=300&q=80" alt="Aerolíneas Economy Plus"></div>
+            <div class="news-small-body">
+              <div>
+                <div class="small-tag">Aviación · Argentina</div>
+                <div class="small-title">Aerolíneas Argentinas suma Economy Plus para vuelos internacionales desde noviembre</div>
+              </div>
+              <a href="#" class="card-link">LEER MÁS ›</a>
+            </div>
+          </div>
+          <div class="news-small-item">
+            <div class="news-small-img"><img src="https://images.unsplash.com/photo-1504700610630-ac6aba3536d3?w=300&q=80" alt="Bariloche Invierno"></div>
+            <div class="news-small-body">
+              <div>
+                <div class="small-tag">Patagonia · Bariloche</div>
+                <div class="small-title">Bariloche se prepara para una temporada invernal histórica con nieve, turismo y grandes eventos</div>
+              </div>
+              <a href="#" class="card-link">LEER MÁS ›</a>
+            </div>
+          </div>
+          <div class="news-small-item">
+            <div class="news-small-img"><img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=300&q=80" alt="Punta Cana"></div>
+            <div class="news-small-body">
+              <div>
+                <div class="small-tag">Caribe · R. Dominicana</div>
+                <div class="small-title">República Dominicana impulsa el turismo de lujo con nuevos resorts en Punta Cana</div>
+              </div>
+              <a href="#" class="card-link">LEER MÁS ›</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CÓRDOBA -->
+      <div id="cordoba">
+        <div class="sec-div"><span>✦ Córdoba ✦</span></div>
+        <div class="section-news">
+
+          <!-- NOTA COMPLETA 1: Agenda Julio -->
+          <div class="art-full">
+            <div class="art-full-header">
+              <div class="art-cat">Córdoba · Vacaciones de Invierno</div>
+              <h3 class="art-full-title">Córdoba presenta una agenda turística cargada de actividades para julio</h3>
+              <p class="art-full-bajada">Festivales, deportes, gastronomía y naturaleza esperan a los visitantes en los principales valles de la provincia durante las vacaciones de invierno.</p>
+              <p class="art-meta">Junio 2026 · Redacción Exclusivo Turismo</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=85" alt="Sierras de Córdoba en invierno">
+            </div>
+            <div class="art-full-text">
+              <p>La provincia de Córdoba se prepara para vivir uno de los meses más intensos del año en materia turística. Con el inicio de las vacaciones de invierno, localidades de todos los valles turísticos ofrecerán una amplia variedad de eventos culturales, deportivos, gastronómicos y recreativos destinados tanto a visitantes como a residentes.</p>
+              <p>Entre las principales propuestas de julio se destacan festivales, espectáculos musicales, ferias de emprendedores, actividades para niños, competencias deportivas y experiencias vinculadas al turismo de naturaleza. La programación abarca destinos como Villa Carlos Paz, Alta Gracia, Villa General Belgrano, La Cumbrecita, Mina Clavero, Santa Rosa de Calamuchita, Río Ceballos y la ciudad de Córdoba, entre otros.</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=900&q=85" alt="Naturaleza serrana cordobesa">
+            </div>
+            <div class="art-full-text">
+              <p>Uno de los eventos destacados será el Campeonato Nacional de Paracaidismo que tendrá lugar en Alta Gracia, convocando a competidores de diferentes provincias y ofreciendo un atractivo espectáculo aéreo para el público. También habrá encuentros gastronómicos, muestras artesanales y actividades vinculadas a las tradiciones regionales en distintos puntos del territorio cordobés.</p>
+              <p>Las vacaciones de invierno volverán a posicionar a las sierras cordobesas como uno de los destinos más elegidos del país. El Valle de Calamuchita, Traslasierra, Punilla y Paravachasca esperan una importante afluencia de turistas atraídos por los paisajes serranos, la gastronomía típica, las propuestas de aventura y la agenda cultural especialmente diseñada para el receso escolar.</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85" alt="Gastronomía serrana cordobesa">
+            </div>
+            <div class="art-full-text">
+              <p>La ciudad de Córdoba también tendrá un rol protagónico con una nutrida programación de espectáculos, visitas guiadas, museos y circuitos patrimoniales. Desde el sector turístico existe optimismo respecto al movimiento que generará el receso invernal, especialmente durante la segunda semana de julio, cuando coincidan las vacaciones escolares de varias provincias argentinas.</p>
+              <p>Con una combinación de naturaleza, cultura, entretenimiento y gastronomía, Córdoba vuelve a consolidarse como uno de los principales destinos turísticos de Argentina para la temporada invernal, ofreciendo propuestas para todos los gustos y edades durante todo el mes de julio.</p>
+            </div>
+            <div class="art-full-footer">
+              <a href="#" class="card-link">SEGUIR LEYENDO ›</a>
+            </div>
+          </div>
+
+          <!-- NOTA COMPLETA 2: Semana Santa -->
+          <div class="art-full">
+            <div class="art-full-header">
+              <div class="art-cat">Córdoba · Temporada</div>
+              <h3 class="art-full-title">Semana Santa 2026: Córdoba alcanzó un promedio de ocupación del 80% y se ubicó entre los destinos más elegidos del país</h3>
+              <p class="art-full-bajada">La provincia registró altos niveles de reservas durante el fin de semana largo, con localidades que alcanzaron ocupación plena y un fuerte movimiento turístico en los principales valles.</p>
+              <p class="art-meta">2026 · Agencia Córdoba Turismo / Destino Córdoba</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=85" alt="Turismo Córdoba Semana Santa">
+            </div>
+            <div class="art-full-text">
+              <p>La provincia de Córdoba volvió a destacarse durante el fin de semana largo de Semana Santa 2026 al alcanzar un promedio general de ocupación turística del 80%, según datos difundidos por la Agencia Córdoba Turismo. A pesar de un contexto económico desafiante y de las condiciones climáticas variables, los principales destinos cordobeses lograron mantener una importante afluencia de visitantes.</p>
+              <p>Entre los destinos con mejores niveles de ocupación se destacaron La Cumbrecita y Villa Ciudad América, que alcanzaron el 100% de sus plazas disponibles. También sobresalieron Río Ceballos con un 96%, Balnearia con un 95%, Villa General Belgrano con un 93% y Miramar de Ansenuza con un 92,5%.</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1604537529428-15bcbeecfe4d?w=900&q=85" alt="Villa General Belgrano Córdoba turismo invierno sierras">
+            </div>
+            <div class="art-full-text">
+              <p>En el Valle de Punilla, Villa Carlos Paz registró una ocupación promedio cercana al 80%, con picos superiores al 86% en establecimientos categorizados. Mientras tanto, localidades de Traslasierra y Calamuchita también mostraron un desempeño positivo durante todo el fin de semana.</p>
+              <p>Las autoridades remarcaron que los resultados reflejan el trabajo conjunto entre municipios, prestadores turísticos y el sector privado para sostener la competitividad del destino en uno de los fines de semana más importantes del calendario anual.</p>
+            </div>
+            <div class="art-full-footer">
+              <a href="#" class="card-link">SEGUIR LEYENDO ›</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ARGENTINA -->
+      <div id="argentina">
+        <div class="sec-div"><span>✦ Argentina ✦</span></div>
+        <div class="section-news">
+
+          <!-- NOTA: Aerolíneas Economy Plus -->
+          <div class="art-full">
+            <div class="art-full-header">
+              <div class="art-cat">Aviación · Argentina</div>
+              <h3 class="art-full-title">Aerolíneas Argentinas suma una nueva clase de servicio para vuelos internacionales</h3>
+              <p class="art-full-bajada">La compañía de bandera lanzó Economy Plus, una categoría intermedia que ofrecerá mayor comodidad y beneficios exclusivos en rutas de larga distancia.</p>
+              <p class="art-meta">2026 · Aerolíneas Argentinas</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=900&q=85" alt="Cabina de avión clase Economy Plus">
+            </div>
+            <div class="art-full-text">
+              <p>En una apuesta por mejorar la experiencia de viaje de sus pasajeros internacionales, Aerolíneas Argentinas anunció la incorporación de "Economy Plus", una nueva categoría de servicio que comenzará a operar en vuelos de larga distancia a partir de noviembre. La propuesta estará disponible en aeronaves Airbus A330 que cubren rutas hacia destinos como Madrid, Roma, Miami, Cancún y Punta Cana.</p>
+              <p>Entre las principales ventajas se destacan asientos con mayor espacio, embarque prioritario, servicios preferenciales durante el vuelo, kit de viaje, manta y almohada premium, además de beneficios adicionales dentro del programa de fidelización Aerolíneas Plus.</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1540339832862-474599807836?w=900&q=85" alt="Interior cabina avión asientos Economy Plus">
+            </div>
+            <div class="art-full-text">
+              <p>Desde la empresa explicaron que la decisión responde a una tendencia que ya se observa en las principales aerolíneas del mundo, donde las categorías intermedias han ganado protagonismo gracias a la creciente demanda de pasajeros que buscan mayor confort en trayectos de larga duración. Con esta nueva categoría, la aerolínea amplía sus opciones comerciales y busca consolidar su posicionamiento en el segmento internacional.</p>
+              <p>La nueva modalidad ya se encuentra disponible para la compra a través de los canales oficiales de la compañía y comenzará a operar en los vuelos programados para la temporada de verano 2026-2027.</p>
+            </div>
+            <div class="art-full-footer">
+              <a href="#" class="card-link">SEGUIR LEYENDO ›</a>
+            </div>
+          </div>
+
+          <!-- NOTA: Bariloche -->
+          <div class="art-full">
+            <div class="art-full-header">
+              <div class="art-cat">Patagonia · Bariloche</div>
+              <h3 class="art-full-title">Bariloche se prepara para una temporada invernal histórica con nieve, turismo y grandes eventos</h3>
+              <p class="art-full-bajada">El Cerro Catedral espera una temporada de alta demanda, con actividades de nieve, gastronomía patagónica y una agenda cultural para toda la familia.</p>
+              <p class="art-meta">Junio 2026 · Redacción Exclusivo Turismo</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1504700610630-ac6aba3536d3?w=900&q=85" alt="Cerro Catedral Bariloche nieve">
+            </div>
+            <div class="art-full-text">
+              <p>San Carlos de Bariloche se prepara para vivir uno de los meses más importantes del año con la llegada de las vacaciones de invierno y una agenda cargada de actividades que prometen atraer a miles de turistas nacionales e internacionales durante julio. El Cerro Catedral, el centro de esquí más importante de Sudamérica, espera una temporada con excelentes condiciones para la práctica de esquí, snowboard y actividades recreativas en la montaña.</p>
+              <p>Durante julio cobrarán protagonismo las experiencias gastronómicas vinculadas al chocolate artesanal, la cerveza patagónica y la cocina regional. Las chocolaterías y cervecerías locales preparan actividades especiales para recibir a los turistas durante el período vacacional.</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?w=900&q=85" alt="Centro Cívico Bariloche lago Nahuel Huapi Patagonia">
+            </div>
+            <div class="art-full-text">
+              <p>Las familias encontrarán una variada oferta de parques de nieve, paseos en trineo, caminatas con raquetas, excursiones guiadas y actividades recreativas adaptadas para todas las edades. Las tradicionales excursiones al Circuito Chico, Cerro Campanario, Isla Victoria, Bosque de Arrayanes y los paseos lacustres seguirán siendo algunas de las opciones más elegidas.</p>
+              <p>El sector turístico mantiene expectativas muy positivas para la temporada, impulsadas por la conectividad aérea y el creciente interés de turistas internacionales por los destinos patagónicos. Hoteles, complejos y prestadores ya trabajan con reservas anticipadas para las semanas de mayor movimiento.</p>
+            </div>
+            <div class="art-full-footer">
+              <a href="#" class="card-link">SEGUIR LEYENDO ›</a>
+            </div>
+          </div>
+
+          <!-- NOTA: Recomendaciones Embajada -->
+          <div class="art-full">
+            <div class="art-full-header">
+              <div class="art-cat">Argentina · Viajes al Exterior</div>
+              <h3 class="art-full-title">La Cancillería Argentina refuerza recomendaciones para quienes viajen al exterior durante las vacaciones de invierno</h3>
+              <p class="art-full-bajada">Ante el aumento de viajes internacionales, las autoridades recuerdan la importancia de contar con documentación vigente, seguro médico y conocer los requisitos de ingreso de cada destino.</p>
+              <p class="art-meta">2026 · Ministerio de Relaciones Exteriores Argentina</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1530521954074-e64f6810b32d?w=900&q=85" alt="Viajeros en aeropuerto internacional documentación">
+            </div>
+            <div class="art-full-text">
+              <p>Con el inicio de la temporada alta de viajes y el incremento de argentinos que elegirán destinos internacionales durante las vacaciones de invierno, la Cancillería y las representaciones diplomáticas argentinas en el exterior renovaron una serie de recomendaciones destinadas a garantizar viajes más seguros y evitar inconvenientes durante la estadía.</p>
+              <p>Entre las principales sugerencias figura verificar con anticipación la vigencia del pasaporte, la documentación requerida para ingresar al país de destino y las condiciones sanitarias o migratorias que puedan encontrarse vigentes al momento del viaje. Las autoridades también recomiendan contratar asistencia al viajero o cobertura médica internacional.</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=900&q=85" alt="Pasaporte documentación viajes internacionales">
+            </div>
+            <div class="art-full-text">
+              <p>Otro de los aspectos destacados es la importancia de registrar información de contacto y conocer la ubicación de los consulados argentinos más cercanos al lugar de estadía. La Cancillería recordó además la conveniencia de mantener copias digitales de pasaportes, pasajes y documentación relevante, así como informar a familiares o personas de confianza sobre el itinerario previsto.</p>
+              <p>Respecto a los viajes con menores de edad, se aconseja revisar cuidadosamente los permisos de salida del país para evitar demoras o inconvenientes en los controles fronterizos. La planificación anticipada continúa siendo una de las herramientas más efectivas para disfrutar de una experiencia turística segura.</p>
+            </div>
+            <div class="art-full-footer">
+              <a href="#" class="card-link">SEGUIR LEYENDO ›</a>
+            </div>
+          </div>
+
+          <!-- NOTA: Ushuaia aerosilla -->
+          <div class="art-full">
+            <div class="art-full-header">
+              <div class="art-cat">Tierra del Fuego · Ushuaia</div>
+              <h3 class="art-full-title">Ushuaia inaugura una nueva aerosilla y renueva su oferta para la temporada de invierno 2026</h3>
+              <p class="art-full-bajada">El Cerro Martial estrena una moderna aerosilla cuádruple y suma nuevas experiencias de montaña para fortalecer la oferta turística fueguina durante el invierno.</p>
+              <p class="art-meta">2026 · Instituto Fueguino de Turismo (INFUETUR)</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1589802829985-817e51171b92?w=900&q=85" alt="Ushuaia Tierra del Fuego ciudad canal Beagle montañas">
+            </div>
+            <div class="art-full-text">
+              <p>La provincia de Tierra del Fuego presentó oficialmente las novedades de la temporada invernal 2026, que tendrá como principal atractivo la inauguración de una nueva aerosilla cuádruple en el Cerro Martial, una de las inversiones más importantes realizadas en los últimos años en el sector turístico de Ushuaia. La obra permitirá mejorar significativamente la capacidad de ascenso y el acceso a las actividades de montaña.</p>
+              <p>Durante la presentación de la temporada, las autoridades destacaron que la renovación del Cerro Martial forma parte de una estrategia destinada a diversificar la oferta invernal de Tierra del Fuego, complementando las propuestas tradicionales de Cerro Castor. La temporada también incluirá la celebración de los 50 años del complejo Tierra Mayor y una nueva edición de la Fiesta Nacional del Invierno.</p>
+            </div>
+            <div class="art-full-footer">
+              <a href="#" class="card-link">SEGUIR LEYENDO ›</a>
+            </div>
+          </div>
+
+          <!-- NOTA: Misiones invierno -->
+          <div class="art-full">
+            <div class="art-full-header">
+              <div class="art-cat">Misiones · Naturaleza</div>
+              <h3 class="art-full-title">Misiones apuesta a la naturaleza y las experiencias únicas para la temporada de invierno</h3>
+              <p class="art-full-bajada">Con temperaturas agradables en julio y las Cataratas del Iguazú como emblema mundial, Misiones ofrece una alternativa diferente y enriquecedora para las vacaciones de invierno.</p>
+              <p class="art-meta">Junio 2026 · Redacción Exclusivo Turismo</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1619546952812-520e98064a52?w=900&q=85" alt="Cataratas del Iguazú Misiones selva tropical">
+            </div>
+            <div class="art-full-text">
+              <p>La provincia de Misiones se prepara para recibir a miles de visitantes durante las vacaciones de invierno con una propuesta turística centrada en la naturaleza, la biodiversidad y las experiencias culturales. A diferencia de los tradicionales destinos de nieve, Misiones ofrece temperaturas agradables durante julio, ideales para recorrer sus principales atractivos al aire libre. Las Cataratas del Iguazú continúan siendo el gran imán turístico de la provincia.</p>
+              <p>Además de Puerto Iguazú, otros destinos misioneros buscan captar la atención de los viajeros con propuestas vinculadas al turismo rural, las comunidades guaraníes, las reducciones jesuíticas, los saltos y cascadas naturales, y las experiencias de contacto directo con la selva paranaense.</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1590577976322-3d2d6e2130d5?w=900&q=85" alt="Selva misionera naturaleza Misiones">
+            </div>
+            <div class="art-full-text">
+              <p>La gastronomía regional también se convierte en protagonista durante la temporada. El chipá, la sopa paraguaya, la mandioca, los pescados de río y la tradicional yerba mate forman parte de una oferta culinaria que cada vez atrae a más visitantes interesados en las experiencias locales.</p>
+              <p>Desde el sector turístico provincial destacan que el invierno representa una de las mejores épocas para recorrer Misiones debido a sus temperaturas moderadas, menor humedad ambiental y excelentes condiciones para realizar excursiones y actividades al aire libre. Con las Cataratas del Iguazú como emblema mundial, Misiones se posiciona una vez más como uno de los destinos más atractivos del invierno argentino.</p>
+            </div>
+            <div class="art-full-footer">
+              <a href="#" class="card-link">SEGUIR LEYENDO ›</a>
+            </div>
+          </div>
+
+          <!-- NOTA: Mendoza verano -->
+          <div class="art-full">
+            <div class="art-full-header">
+              <div class="art-cat">Mendoza · Enoturismo</div>
+              <h3 class="art-full-title">Mendoza cerró una destacada temporada de verano con más de 1,2 millones de turistas</h3>
+              <p class="art-full-bajada">La provincia registró altos niveles de ocupación durante el verano 2025-2026, impulsada por el turismo del vino, la montaña y una intensa agenda de festivales.</p>
+              <p class="art-meta">2026 · Ente Mendoza Turismo (EMETUR)</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1504279577054-acfeccf8fc52?w=900&q=85" alt="Viñedo bodega Mendoza cordillera Andes enoturismo">
+            </div>
+            <div class="art-full-text">
+              <p>La provincia de Mendoza concluyó la temporada de verano 2025-2026 con un balance positivo en materia turística, consolidándose como uno de los destinos más elegidos del país durante los meses de diciembre, enero y febrero. Según datos del Ente Mendoza Turismo (EMETUR), más de 1,2 millones de visitantes recorrieron la provincia durante la temporada estival, generando un importante impacto económico.</p>
+              <p>La ocupación promedio provincial se ubicó por encima del 60%, con picos superiores durante enero y febrero en destinos como la Ciudad de Mendoza, Valle de Uco, San Rafael y Potrerillos. Las actividades vinculadas al enoturismo, el turismo aventura y los circuitos gastronómicos fueron las más demandadas por los visitantes.</p>
+            </div>
+            <div class="art-full-footer">
+              <a href="#" class="card-link">SEGUIR LEYENDO ›</a>
+            </div>
+          </div>
+
+          <!-- NOTA: Buenos Aires invierno -->
+          <div class="art-full">
+            <div class="art-full-header">
+              <div class="art-cat">Buenos Aires · Cultura y Teatro</div>
+              <h3 class="art-full-title">Buenos Aires se prepara para un invierno a puro turismo, cultura y teatro</h3>
+              <p class="art-full-bajada">La ciudad presenta más de 500 propuestas culturales, un renovado cartel teatral y eventos familiares de primer nivel que consolidan a la capital como epicentro del turismo invernal sudamericano.</p>
+              <p class="art-meta">Junio 2026 · Redacción Exclusivo Turismo</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1575783970733-1aaedde1db74?w=900&q=85" alt="Teatro Colón Buenos Aires opera cultura">
+            </div>
+            <div class="art-full-text">
+              <p>La Ciudad de Buenos Aires afronta la temporada de invierno 2026 con una de las agendas culturales y turísticas más importantes del país. Durante julio, miles de visitantes llegarán a la capital argentina atraídos por la amplia oferta de espectáculos teatrales, musicales, actividades familiares, museos y experiencias urbanas que consolidan a la ciudad como uno de los principales destinos turísticos de Sudamérica.</p>
+              <p>Las vacaciones de invierno serán el gran motor de la actividad turística. Más de 500 propuestas culturales, recreativas y educativas se desarrollarán en teatros, centros culturales, museos, plazas y espacios públicos distribuidos en todos los barrios porteños. La tradicional Avenida Corrientes volverá a ser el epicentro de la actividad teatral.</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1536064479547-7ee40b74b807?w=900&q=85" alt="Buenos Aires avenida ciudad turismo cultural">
+            </div>
+            <div class="art-full-text">
+              <p>Entre las propuestas más esperadas sobresalen los espectáculos familiares, con nuevas producciones de teatro musical, clásicos infantiles y shows especialmente diseñados para el público infantil. También destaca el regreso de Disney On Ice y la continuidad de Fuerza Bruta AVEN, espectáculo de reconocimiento internacional.</p>
+              <p>Además de la cartelera teatral, los turistas podrán disfrutar de visitas guiadas, museos, galerías de arte, circuitos históricos y recorridos patrimoniales. Entre los sitios más visitados figura el Teatro Colón, considerado uno de los teatros líricos con mejor acústica del mundo. Con teatro, música, entretenimiento familiar y una oferta cultural inigualable, Buenos Aires vuelve a posicionarse como una de las capitales turísticas más atractivas de América Latina.</p>
+            </div>
+            <div class="art-full-footer">
+              <a href="#" class="card-link">SEGUIR LEYENDO ›</a>
+            </div>
+          </div>
+
+          <!-- NOTA: Turismo receptivo Argentina -->
+          <div class="art-full">
+            <div class="art-full-header">
+              <div class="art-cat">Argentina · Turismo Internacional</div>
+              <h3 class="art-full-title">Llegada de turistas extranjeros a Argentina creció en 2025, aunque aún se mantiene por debajo de los niveles récord prepandemia</h3>
+              <p class="art-full-bajada">Los ingresos de visitantes internacionales mostraron señales de recuperación, con un fuerte aporte de viajeros provenientes de Brasil, Uruguay, Chile y Europa.</p>
+              <p class="art-meta">2026 · INDEC / Secretaría de Turismo, Ambiente y Deportes de la Nación</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=900&q=85" alt="Turistas internacionales visitando Argentina">
+            </div>
+            <div class="art-full-text">
+              <p>El turismo receptivo en Argentina registró una recuperación sostenida durante 2025, con un incremento en la llegada de visitantes extranjeros respecto de los años anteriores, aunque todavía sin alcanzar los máximos históricos observados antes de la pandemia. Según datos del INDEC, el país recibió aproximadamente 6,2 millones de turistas no residentes durante 2025.</p>
+              <p>Brasil continúa siendo el principal mercado emisor para Argentina, seguido por Uruguay, Chile, Estados Unidos y diversos países europeos. Buenos Aires, Patagonia, Iguazú, Mendoza y el Noroeste Argentino siguen concentrando gran parte de las preferencias de los visitantes extranjeros.</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1555993539-1732b0258235?w=900&q=85" alt="Buenos Aires destino turístico Argentina">
+            </div>
+            <div class="art-full-text">
+              <p>Los especialistas destacan que Argentina todavía se encuentra por debajo del récord alcanzado en 2019, cuando el país recibió cerca de 7,4 millones de turistas internacionales. El desafío para los próximos años será continuar aumentando la conectividad internacional y consolidar la recuperación del turismo receptivo. Las autoridades nacionales destacan que la ampliación de rutas aéreas y las acciones de promoción en mercados estratégicos han contribuido a fortalecer la competitividad del país como destino turístico global.</p>
+            </div>
+            <div class="art-full-footer">
+              <a href="#" class="card-link">SEGUIR LEYENDO ›</a>
+            </div>
+          </div>
+
+          <!-- NOTA: Brasil verano argentinos -->
+          <div class="art-full">
+            <div class="art-full-header">
+              <div class="art-cat">Argentina · Turismo Emisivo</div>
+              <h3 class="art-full-title">Brasil lidera las preferencias de los argentinos para la temporada de verano 2026-2027</h3>
+              <p class="art-full-bajada">Florianópolis, Río de Janeiro y Búzios encabezan las búsquedas y reservas anticipadas, mientras que el Caribe y algunos destinos europeos siguen ganando terreno.</p>
+              <p class="art-meta">2026 · Booking.com / Despegar / Google Travel Insights</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=900&q=85" alt="Playa de Florianópolis Brasil">
+            </div>
+            <div class="art-full-text">
+              <p>A poco más de seis meses del inicio de la temporada de verano 2026-2027, las primeras tendencias del mercado turístico muestran que Brasil volvería a consolidarse como el destino internacional favorito de los argentinos. Florianópolis aparece nuevamente como el destino más buscado, seguida por Río de Janeiro y Búzios. La combinación de playas, cercanía geográfica, amplia conectividad aérea y una relación costo-beneficio competitiva explican el liderazgo del país vecino.</p>
+              <p>Sin embargo, el Caribe también aparece como uno de los grandes protagonistas de la próxima temporada. Destinos como Punta Cana (República Dominicana) y Aruba registran un aumento sostenido en el interés de los viajeros argentinos, especialmente entre quienes buscan paquetes all inclusive y estadías de mayor duración.</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=85" alt="Playa Caribe destinos preferidos argentinos">
+            </div>
+            <div class="art-full-text">
+              <p>En Europa, las preferencias continúan concentrándose en ciudades tradicionales como Madrid, que sigue siendo una de las puertas de entrada más elegidas por los argentinos para recorrer el continente. Los analistas del sector estiman que el verano 2026-2027 estará marcado por una fuerte presencia del turismo emisivo, impulsado por una mayor oferta aérea internacional y por la tendencia de los viajeros a reservar con más anticipación que en años anteriores.</p>
+            </div>
+            <div class="art-full-footer">
+              <a href="#" class="card-link">SEGUIR LEYENDO ›</a>
+            </div>
+          </div>
+
+          <!-- NOTA: Aerolíneas venta pasajes internacionales -->
+          <div class="art-full">
+            <div class="art-full-header">
+              <div class="art-cat">Aviación · Mercado Aerocomercial</div>
+              <h3 class="art-full-title">Aerolíneas Argentinas impulsa la venta de pasajes internacionales en un mercado que sigue creciendo</h3>
+              <p class="art-full-bajada">La demanda de vuelos al exterior mantiene una tendencia positiva durante 2026 y la compañía de bandera apuesta a fortalecer su presencia en las rutas internacionales más requeridas.</p>
+              <p class="art-meta">2026 · ANAC / Aerolíneas Argentinas / Infobae</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=900&q=85" alt="Avión Aerolíneas Argentinas despegando">
+            </div>
+            <div class="art-full-text">
+              <p>El mercado aerocomercial argentino continúa mostrando signos de expansión durante 2026 y Aerolíneas Argentinas busca capitalizar ese crecimiento a través de una mayor participación en el segmento internacional. Según datos de la ANAC, el tráfico aéreo alcanzó niveles récord durante los primeros meses de 2026, impulsado principalmente por el crecimiento de los vuelos internacionales y la apertura de nuevas rutas al exterior.</p>
+              <p>Aerolíneas Argentinas mantiene una fuerte presencia en destinos de alta demanda como Madrid, Roma, Miami, Cancún y Punta Cana. La empresa también reforzó su estrategia comercial mediante promociones especiales y nuevas categorías tarifarias para estimular la venta anticipada de pasajes internacionales.</p>
+            </div>
+            <div class="art-full-footer">
+              <a href="#" class="card-link">SEGUIR LEYENDO ›</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CARIBE -->
+      <div id="caribe">
+        <div class="sec-div"><span>✦ Caribe ✦</span></div>
+        <div class="section-news">
+
+          <!-- NOTA: República Dominicana -->
+          <div class="art-full">
+            <div class="art-full-header">
+              <div class="art-cat">Caribe · República Dominicana</div>
+              <h3 class="art-full-title">República Dominicana impulsa el turismo de lujo con nuevos resorts en Punta Cana</h3>
+              <p class="art-full-bajada">Los nuevos complejos hoteleros incorporan propuestas gastronómicas internacionales, actividades náuticas y servicios personalizados orientados al segmento de alto poder adquisitivo.</p>
+              <p class="art-meta">2026 · Ministerio de Turismo de República Dominicana</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=900&q=85" alt="Punta Cana playa resort de lujo">
+            </div>
+            <div class="art-full-text">
+              <p>La República Dominicana continúa consolidándose como uno de los destinos más fuertes del Caribe con la apertura de nuevos complejos hoteleros en Punta Cana enfocados en el turismo de lujo y experiencias todo incluido. Los nuevos resorts incorporan propuestas gastronómicas internacionales, actividades náuticas y servicios personalizados orientados al turismo de alto poder adquisitivo.</p>
+              <p>El Ministerio de Turismo destacó que el país mantiene un crecimiento sostenido en la llegada de visitantes internacionales, impulsado principalmente por la conectividad aérea y la diversificación de su oferta hotelera. Argentina figura entre los mercados con mayor crecimiento de viajeros hacia este destino durante 2026.</p>
+            </div>
+            <div class="art-full-footer">
+              <a href="#" class="card-link">SEGUIR LEYENDO ›</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- EUROPA -->
+      <div id="europa">
+        <div class="sec-div"><span>✦ Europa ✦</span></div>
+        <div class="section-news">
+
+          <!-- NOTA: Livigno Italia -->
+          <div class="art-full">
+            <div class="art-full-header">
+              <div class="art-cat">Europa · Italia</div>
+              <h3 class="art-full-title">Italia impulsa una transformación histórica en Livigno para atraer al turismo de invierno</h3>
+              <p class="art-full-bajada">El destino alpino invierte más de 300 millones de euros en infraestructura y nuevas experiencias para consolidarse como uno de los centros invernales más modernos de Europa.</p>
+              <p class="art-meta">2026 · Reuters / Oficina de Turismo de Livigno / Mottolino Ski Area</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?w=900&q=85" alt="Livigno Alpes italianos esquí invierno">
+            </div>
+            <div class="art-full-text">
+              <p>La localidad italiana de Livigno presentó una profunda renovación de su infraestructura turística de cara a la temporada de invierno, con inversiones que superan los 300 millones de euros destinadas a modernizar instalaciones, ampliar servicios y posicionar al destino entre los principales centros de deportes de nieve de Europa.</p>
+              <p>El plan contempla mejoras en áreas de esquí, nuevas instalaciones para freestyle y snowboard, ampliación de sistemas de producción de nieve y la modernización de servicios orientados a visitantes internacionales. Las inversiones se aceleraron en el marco de la creciente visibilidad internacional que tendrá la región gracias a los eventos deportivos de invierno en el norte de Italia.</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1431794062232-2a99a5431c6c?w=900&q=85" alt="Alpes italianos paisaje nevado turismo de montaña">
+            </div>
+            <div class="art-full-text">
+              <p>Autoridades locales y empresarios turísticos coinciden en que el objetivo es atraer a un público más joven y global, ofreciendo experiencias modernas sin perder la identidad alpina que caracteriza a la región. Además de las mejoras deportivas, el plan incluye inversiones en hotelería, gastronomía, movilidad y sostenibilidad, aspectos cada vez más valorados por los viajeros que eligen destinos de nieve en Europa.</p>
+              <p>Con estas iniciativas, Livigno busca consolidar su posicionamiento como uno de los destinos más innovadores de los Alpes para la temporada invernal 2026-2027.</p>
+            </div>
+            <div class="art-full-footer">
+              <a href="#" class="card-link">SEGUIR LEYENDO ›</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- MUNDO -->
+      <div id="mundo">
+        <div class="sec-div"><span>✦ Resto del Mundo ✦</span></div>
+        <div class="section-news">
+
+          <!-- NOTA: Perú Cusco -->
+          <div class="art-full">
+            <div class="art-full-header">
+              <div class="art-cat">América del Sur · Perú</div>
+              <h3 class="art-full-title">Perú refuerza el turismo en Cusco con nuevas rutas culturales</h3>
+              <p class="art-full-bajada">El Ministerio de Comercio Exterior y Turismo amplía los circuitos turísticos en la región andina para descongestionar Machu Picchu y promover un turismo más sostenible.</p>
+              <p class="art-meta">2026 · Ministerio de Comercio Exterior y Turismo de Perú</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?w=900&q=85" alt="Cusco Perú Machu Picchu Valle Sagrado">
+            </div>
+            <div class="art-full-text">
+              <p>El Ministerio de Comercio Exterior y Turismo de Perú anunció la ampliación de circuitos turísticos en la región de Cusco con el objetivo de descongestionar Machu Picchu y diversificar la oferta en la zona andina. Las nuevas rutas incluyen experiencias en comunidades rurales, senderos alternativos del Valle Sagrado y visitas a sitios arqueológicos menos conocidos, como parte de una estrategia para promover un turismo más sostenible.</p>
+              <p>Las autoridades señalaron que el plan busca mejorar la distribución de visitantes durante la temporada alta y fortalecer el turismo comunitario, incorporando emprendimientos locales en la cadena de servicios. Esta iniciativa responde a la creciente preocupación por la masificación turística en los principales sitios patrimoniales de la región.</p>
+            </div>
+            <div class="art-full-footer">
+              <a href="#" class="card-link">SEGUIR LEYENDO ›</a>
+            </div>
+          </div>
+
+          <!-- NOTA: Nueva York invierno -->
+          <div class="art-full">
+            <div class="art-full-header">
+              <div class="art-cat">Estados Unidos · Nueva York</div>
+              <h3 class="art-full-title">Nueva York refuerza su agenda cultural con más eventos de invierno</h3>
+              <p class="art-full-bajada">La ciudad presenta una nueva programación de invierno con espectáculos en Broadway, exhibiciones en museos y actividades al aire libre que apuntan a captar más visitantes internacionales.</p>
+              <p class="art-meta">2026 · NYC Tourism + Conventions</p>
+            </div>
+            <div class="art-full-img-wrap">
+              <img src="https://images.unsplash.com/photo-1485871981521-5b1fd3805c19?w=900&q=85" alt="Nueva York Manhattan ciudad cultura Broadway">
+            </div>
+            <div class="art-full-text">
+              <p>La ciudad de Nueva York presentó su nueva programación cultural de invierno con una fuerte apuesta a los espectáculos en Broadway, exhibiciones en museos y actividades al aire libre en parques urbanos. Entre las principales novedades se destacan nuevas producciones teatrales, muestras temporales en el MoMA y el Metropolitan Museum, además de eventos especiales en Central Park y el distrito de Brooklyn.</p>
+              <p>Las autoridades de turismo indicaron que la ciudad espera un incremento en la llegada de visitantes internacionales durante la temporada invernal, impulsado por la oferta cultural y la recuperación del turismo urbano. La propuesta apunta especialmente al segmento de viajeros de alto poder adquisitivo que buscan experiencias culturales únicas durante los meses de menor concurrencia.</p>
+            </div>
+            <div class="art-full-footer">
+              <a href="#" class="card-link">SEGUIR LEYENDO ›</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DESTINOS -->
+      <div id="destinos" class="dest-section">
+        <div class="sec-head">
+          <span class="sec-title">Destinos Destacados</span>
+          <a href="#" class="sec-more">VER TODOS ›</a>
+        </div>
+        <div class="dest-grid">
+          <div class="dest-card">
+            <img src="https://images.unsplash.com/photo-1504700610630-ac6aba3536d3?w=600&q=80" alt="Bariloche">
+            <div class="dest-caption"><div class="dest-name">Bariloche</div><div class="dest-sub">Patagonia</div></div>
+            <div class="dest-border"></div>
+          </div>
+          <div class="dest-card">
+            <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80" alt="Iguazú">
+            <div class="dest-caption"><div class="dest-name">Iguazú</div><div class="dest-sub">Misiones</div></div>
+            <div class="dest-border"></div>
+          </div>
+          <div class="dest-card">
+            <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=600&q=80" alt="Mendoza">
+            <div class="dest-caption"><div class="dest-name">Mendoza</div><div class="dest-sub">Cuyo</div></div>
+            <div class="dest-border"></div>
+          </div>
+          <div class="dest-card">
+            <img src="https://images.unsplash.com/photo-1534214526114-0ea4d47b04f2?w=600&q=80" alt="Jujuy">
+            <div class="dest-caption"><div class="dest-name">Jujuy</div><div class="dest-sub">NOA</div></div>
+            <div class="dest-border"></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- fin col izquierda -->
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sbox">
+        <div class="sbox-head">Sponsor Destacado</div>
+        <div class="sbox-body" style="text-align:center">
+          <span class="ypf">YPF</span>
+          <div class="ypf-tag">Energía que<br>Mueve al Turismo</div>
+          <a href="#" class="btn-outline">CONOCER MÁS</a>
+        </div>
+      </div>
+      <div class="sbox">
+        <div class="sbox-head">Evento Destacado</div>
+        <div class="sbox-body">
+          <div class="fit-wrap">
+            <div class="fit-badge"><div class="fit-big">FIT</div></div>
+            <div>
+              <div class="fit-name">FIT</div>
+              <div class="fit-desc">Feria Internacional<br>de Turismo de<br>América Latina</div>
+            </div>
+          </div>
+          <div class="fit-date">28 SEP – 1 OCT 2024</div>
+          <div class="fit-place">La Rural · Buenos Aires</div>
+          <a href="#" class="btn-gold">MÁS INFORMACIÓN</a>
+        </div>
+      </div>
+      <div class="sbox" id="streaming">
+        <div class="sbox-head" style="color:var(--gold)">Exclusivo Turismo TV</div>
+        <div class="sbox-body">
+          <a href="https://www.youtube.com/live/HfgIFGbdGJ0" target="_blank" class="tv-thumb">
+            <div class="tv-play"></div>
+          </a>
+          <div class="tv-label">En Vivo · Edición Especial</div>
+          <div class="tv-name">Semana de Turismo 2026 · Córdoba</div>
+          <div class="tv-role">Cobertura en tiempo real. Entrevistas exclusivas con referentes del sector oficial y privado.</div>
+          <a href="https://www.youtube.com/live/HfgIFGbdGJ0" target="_blank" class="card-link">VER EN VIVO ›</a>
+        </div>
+      </div>
+    </aside>
+
+  </div><!-- fin main-grid -->
+</div><!-- fin page -->
+
+
+<!-- ══ LIVE CAM SECTION ══ -->
+<div class="livecam-wrap">
+  <div class="livecam-topbar">
+    <div class="livecam-badge">
+      <span class="livecam-dot"></span>
+      <span>En Vivo</span>
+      <span class="livecam-badge-txt">&nbsp;·&nbsp; Cámaras Turísticas — Exclusivo Turismo TV</span>
+    </div>
+    <a href="https://www.youtube.com/live/r1K7DyQn3jg?si=ipvnCkNoreZKyyAr" target="_blank" class="livecam-open-btn">
+      &#9654; VER EN VIVO
+    </a>
+  </div>
+  <div class="livecam-preview" onclick="window.open('https://www.youtube.com/live/r1K7DyQn3jg?si=ipvnCkNoreZKyyAr','_blank')">
+    <img src="https://img.youtube.com/vi/r1K7DyQn3jg/maxresdefault.jpg" alt="Camaras Turisticas en Vivo" onerror="this.src='https://img.youtube.com/vi/r1K7DyQn3jg/hqdefault.jpg'">
+    <div class="livecam-overlay">
+      <div class="livecam-play">&#9654;</div>
+      <div class="livecam-play-label">&#128247; Ver Camaras en Vivo</div>
+      <div class="livecam-play-sub">Destinos turisticos en tiempo real</div>
+    </div>
+  </div>
+  <div class="livecam-footer-bar">
+    <span>&#127757; Lugares turisticos en tiempo real</span>
+    <a href="https://www.youtube.com/live/r1K7DyQn3jg?si=ipvnCkNoreZKyyAr" target="_blank" class="livecam-yt-link">Abrir &#8599;</a>
+  </div>
+</div>
+
+<!-- ALIADOS -->
+<section class="aliados-section">
+  <div class="aliados-inner">
+    <span class="sec-title">Aliados Estratégicos</span>
+    <div class="aliados-row">
+      <div class="aliado"><div class="al-icon">🏛</div><div class="al-text">Ministerio de Turismo<small>y Deportes Argentina</small></div></div>
+      <div class="aliado"><div class="al-icon" style="background:var(--gold);border-color:var(--gold);font-weight:900;font-size:12px;color:#000">VA</div><div class="al-text">Visit<small>Argentina</small></div></div>
+      <div class="aliado"><div class="al-icon" style="font-weight:900;font-size:11px;color:var(--gold)">CAT</div><div class="al-text">Cámara Argentina<small>de Turismo</small></div></div>
+      <div class="aliado"><div class="al-icon" style="font-size:11px;font-weight:700">⊕</div><div class="al-text">FAEVYT<small>Fed. Arg. Asoc. Empresas</small></div></div>
+      <div class="aliado"><div class="al-icon" style="font-weight:900;font-size:11px">AHT</div><div class="al-text">AHT<small>Asoc. de Hoteles</small></div></div>
+      <div class="aliado"><div class="al-icon" style="font-size:10px;font-weight:800;color:var(--gold)">AC</div><div class="al-text">ASIST CARD<small>Viajá Tranquilo</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">Exclusivo Turismo © 2026 · Todos los Derechos Reservados</div>
+  <div class="footer-links">
+    <a href="mailto:exclusivoturismoinfo@gmail.com">Contacto</a>
+    <a href="#">Términos y Condiciones</a>
+    <a href="#">Política de Privacidad</a>
+  </div>
+</footer>
+
+<script>
+// THEME
+function toggleTheme(){
+  const html=document.documentElement,btn=document.getElementById('themeBtn');
+  if(html.dataset.theme==='light'){html.dataset.theme='dark';btn.textContent='☀ CLARO';}
+  else{html.dataset.theme='light';btn.textContent='☾ OSCURO';}
+}
+
+// HERO SLIDESHOW
+const slides=[
+  {img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=85',title:'Córdoba presenta una agenda turística cargada de actividades para julio',body:'Festivales, deportes, gastronomía y naturaleza esperan a los visitantes en los principales valles de la provincia durante las vacaciones de invierno 2026.'},
+  {img:'https://images.unsplash.com/photo-1504700610630-ac6aba3536d3?w=1600&q=85',title:'Bariloche se prepara para una temporada invernal histórica',body:'El Cerro Catedral, el centro de esquí más importante de Sudamérica, espera una temporada de alta demanda con excelentes condiciones de nieve.'},
+  {img:'https://images.unsplash.com/photo-1548574505-5e239809ee19?w=1600&q=85',title:'Italia invierte 300 millones de euros en transformar Livigno',body:'El destino alpino apuesta a convertirse en uno de los centros de deportes de nieve más modernos de Europa para la temporada 2026-2027.'},
+  {img:'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1600&q=85',title:'Buenos Aires: un invierno a puro turismo, cultura y teatro',body:'Más de 500 propuestas culturales y un renovado cartel teatral consolidan a la capital como epicentro del turismo invernal de Sudamérica.'},
+];
+let cur=0;
+function goSlide(n){
+  document.querySelectorAll('.hero-slide').forEach((s,i)=>s.classList.toggle('active',i===n));
+  document.querySelectorAll('.hdot').forEach((d,i)=>d.classList.toggle('active',i===n));
+  document.getElementById('hero-title').textContent=slides[n].title;
+  document.getElementById('hero-body').textContent=slides[n].body;
+  cur=n;
+}
+setInterval(()=>goSlide((cur+1)%slides.length),5500);
+
+// LIVE CAM
+const LIVE_URL='https://www.youtube.com/embed/r1K7DyQn3jg?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1';
+function openLiveCam(){
+  document.getElementById('livecamIframe').src=LIVE_URL;
+  document.getElementById('livecamModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLiveCam(){
+  document.getElementById('livecamModal').classList.remove('open');
+  document.getElementById('livecamIframe').src='';
+  document.body.style.overflow='';
+}
+function hideMini(){
+  document.getElementById('livecamMini').style.display='none';
+  document.getElementById('livecamRestoreBtn').style.display='block';
+}
+function showMini(){
+  document.getElementById('livecamMini').style.display='block';
+  document.getElementById('livecamRestoreBtn').style.display='none';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLiveCam();});
+window.addEventListener('load',()=>{
+  document.getElementById('livecamModal').addEventListener('click',function(e){
+    if(e.target===this)closeLiveCam();
+  });
+});
+</script>
+
+</body>
+</html>
